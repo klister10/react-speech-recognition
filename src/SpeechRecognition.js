@@ -48,7 +48,7 @@ export default function SpeechRecognition(options) {
         }
       }
 
-      disconnect = disconnectType => {
+      disconnect(disconnectType) {
         if (recognition) {
           switch (disconnectType) {
             case 'ABORT':
@@ -99,14 +99,14 @@ export default function SpeechRecognition(options) {
         return transcriptParts.map(t => t.trim()).join(' ').trim()
       }
 
-      resetTranscript = () => {
+      resetTranscript () {
         interimTranscript = ''
         finalTranscript = ''
         this.disconnect('RESET')
         this.setState({ interimTranscript, finalTranscript })
       }
 
-      startListening = () => {
+      startListening () {
         if (recognition && !listening) {
           try {
             recognition.start()
@@ -118,13 +118,13 @@ export default function SpeechRecognition(options) {
         }
       }
 
-      abortListening = () => {
+      abortListening () {
         listening = false
         this.setState({ listening })
         this.disconnect('ABORT')
       }
 
-      stopListening = () => {
+      stopListening () {
         listening = false
         this.setState({ listening })
         this.disconnect('STOP')
